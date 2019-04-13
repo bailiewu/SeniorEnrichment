@@ -1,3 +1,3 @@
-# react-minimal template
+# SeniorEnrichment
 - npm install
 - npm run start:dev
