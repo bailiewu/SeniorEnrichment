@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class Campus extends Component {
+
+export default withRouter(class Campus extends Component {
+    constructor() {
+        super()
+        this.state = {
+            redirect: false
+        }
+        this.click = this.click.bind(this)
+    }
+    click = (campus) => {
+        this.props.history.push(`/campuses/${campus.id}`)
+    }
     render() {
         const { campus } = this.props
         return (
-            <div className="col">
+            <div className="col" onClick={() => this.click(campus)}>
                 <div style={{
                     position: 'absolute',
                     color: 'white',
@@ -12,8 +24,7 @@ export default class Campus extends Component {
                     zIndex: 100,
                     left: 90,
                     top: 90
-                }}>
-                    {campus.name}
+                }}> {campus.name}
                 </div >
 
                 <img src={campus.imageUrl} style={{ width: 200, height: 200, position: 'relative' }} />
@@ -21,4 +32,4 @@ export default class Campus extends Component {
             </div>
         )
     }
-}
+})
