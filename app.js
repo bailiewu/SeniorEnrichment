@@ -134,11 +134,7 @@ app.delete('/students/:id', (req, res, next) => {
 
 })
 
-app.all('/:lol', (req, res, next) => {
-    res.send('lol')
-    console.log('here')
-    res.redirect('/')
-})
+
 
 // curl -X PUT -H "Content-Type: application/json" -d '{"email": "cody@email.com", "password": "12345"}' http://localhost:3000/api/campuses/1
 
