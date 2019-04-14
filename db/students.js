@@ -33,6 +33,7 @@ const Students = connection.define('student', {
     },
     gpa: {
         type: Sequelize.DECIMAL(2, 1),
+        defaultValue: 0,
         validate: {
             min: 0,
             max: 4,
