@@ -26,7 +26,6 @@ const Students = connection.define('student', {
     },
     imageUrl: {
         type: Sequelize.TEXT,
-        defaultValue: 'https://images.pexels.com/photos/53453/marilyn-monroe-woman-actress-pretty-53453.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
         validate: {
             isUrl: true
         }
@@ -39,6 +38,17 @@ const Students = connection.define('student', {
             max: 4,
         }
     }
-})
+}, {
+        hooks: {
+            beforeValidate: (student) => {
+                if (!student.email) {
+                    student.email = 'temp@gmail.com'
+                }
+                if (!student.imageUrl) {
+                    student.imageUrl = 'https://images.pexels.com/photos/53453/marilyn-monroe-woman-actress-pretty-53453.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'
+                }
+            }
+        }
+    })
 
 module.exports = Students

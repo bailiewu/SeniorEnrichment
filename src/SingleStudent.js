@@ -19,6 +19,11 @@ export default withRouter(class SingleStudent extends Component {
                 // console.log(student)
                 this.setState(student)
             })
+            .then(() => {
+                if (!this.state.id) {
+                    this.props.history.push('/students')
+                }
+            })
     }
 
     render() {

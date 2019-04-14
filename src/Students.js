@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getStudents } from './store'
 import Student from './Student'
+import AddStudent from './AddStudent';
 
 class Students extends Component {
     componentDidMount() {
@@ -10,12 +11,15 @@ class Students extends Component {
 
     render() {
         const { students } = this.props
-        // console.log(students)
         return (
-            <ul >
-                {students.map((student) => (<Student student={student} key={student.id} />))}
+            <div>
 
-            </ul>
+                <ul >
+                    {students.map((student) => (<Student student={student} key={student.id} />))}
+                </ul>
+                <AddStudent />
+            </div>
+
         )
     }
 }

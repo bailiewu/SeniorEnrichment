@@ -5,9 +5,6 @@ import { withRouter } from 'react-router-dom';
 export default withRouter(class Campus extends Component {
     constructor() {
         super()
-        this.state = {
-            redirect: false
-        }
         this.click = this.click.bind(this)
     }
     click = (campus) => {
@@ -26,10 +23,9 @@ export default withRouter(class Campus extends Component {
                     top: 90
                 }} */> {campus.name}
                 </div >
-
                 <img src={campus.imageUrl} style={{ width: 200, height: 200, position: 'relative' }} />
-
             </div>
+
         )
     }
 })

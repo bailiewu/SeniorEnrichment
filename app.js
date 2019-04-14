@@ -55,7 +55,7 @@ app.get('/campuses/:id', (req, res, next) => {
         .catch(next)
 })
 
-app.put('/campuses/', (req, res, next) => {
+app.put('/campuses', (req, res, next) => {
     // console.log(req.body, req.params)
     // curl -X PUT -H "Content-Type: application/json" -d '{"name": "campusNameTest", "address": "123 Fake Street"}' http://localhost:3000/api/campuses/1
     // req.body: email & pw. req.params: id
@@ -74,19 +74,20 @@ app.put('/campuses/', (req, res, next) => {
 
 })
 
-app.put('/students/', (req, res, next) => {
+app.put('/students', (req, res, next) => {
     // console.log(req.body, req.params)
-    // curl -X PUT -H "Content-Type: application/json" -d '{"firstName": "firstNameTest", "lastName": "lastNameTest", "email":"email.gmail.com", "gpa":1}' http://localhost:3000/api/students
+    // curl -X PUT -H "Content-Type: application/json" -d '{"firstName": "firstNameTest", "lastName": "lastNameTest", "email":"email@gmail.com", "gpa":"1"}' http://localhost:3000/api/students
     // req.body: email & pw. req.params: id
     // will use id later for updating.
     // required campus info:
     //  Students.create({ firstName: faker.name.firstName(), lastName: faker.name.lastName(), email: faker.internet.email(), gpa: randomGPA() })
 
-    const { firstName, lastName, email, gpa } = req.body
+    const { firstName, lastName, email, imageUrl, gpa } = req.body
     Students.create({
         firstName,
         lastName,
         email,
+        imageUrl,
         gpa
     })
         .then((student) => res.json(student))

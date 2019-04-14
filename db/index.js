@@ -60,6 +60,7 @@ const syncAndSeed = () => {
         .catch(error => console.log(error))
 }
 module.exports = {
+    connection,
     syncAndSeed,
     models: {
         Campuses,

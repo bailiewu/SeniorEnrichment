@@ -8,7 +8,6 @@ import Students from './Students'
 import SingleCampus from './SingleCampus';
 import SingleStudent from './SingleStudent';
 
-
 export default class App extends Component {
     render() {
         return (

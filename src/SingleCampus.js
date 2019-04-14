@@ -33,7 +33,12 @@ export default withRouter(class SingleCampus extends Component {
             .then((response) => response.data)
             .then(campus => {
                 // console.log(campus)
-                this.setState(campus)
+                return this.setState(campus)
+            })
+            .then(() => {
+                if (!this.state.id) {
+                    this.props.history.push('/')
+                }
             })
     }
 
