@@ -10,7 +10,6 @@ const Campuses = connection.define('campus', {
     },
     imageUrl: {
         type: Sequelize.TEXT,
-        defaultValue: 'https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg',
         validate: {
             isUrl: true
         }
@@ -23,6 +22,13 @@ const Campuses = connection.define('campus', {
         }
     },
     description: Sequelize.TEXT
-})
+}, {
+        hooks: {
+            beforeValidate: (campus) => {
+                if (!campus.imageUrl) campus.imageUrl = 'https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg'
+
+            }
+        }
+    })
 
 module.exports = Campuses

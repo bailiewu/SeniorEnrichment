@@ -10,6 +10,7 @@ class AddCampus extends Component {
             name: '',
             address: '',
             description: '',
+            imageUrl: '',
             disabled: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -20,15 +21,15 @@ class AddCampus extends Component {
         // console.log(obj.target.name)
         this.setState({ [obj.target.name]: obj.target.value }, () => {
             this.setState({ disabled: !!this.state.name && !!this.state.address })
-            console.log(this.state.name, this.state.address, this.state.disabled)
+            // console.log(this.state.name, this.state.address, this.state.disabled)
         })
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const { name, address, description } = this.state
+        const { name, address, description, imageUrl } = this.state
         // this.setState({ disabled: !!name && !!address })
-        axios.put('/api/campuses', { name, address, description })
+        axios.put('/api/campuses', { name, address, description, imageUrl })
             .then((newCampus) => newCampus.data)
             // .then(() => )
             // .then((newCampus) => this.props.history.push(`/campuses/${newCampus.id}`))
@@ -36,7 +37,7 @@ class AddCampus extends Component {
             .catch(er => console.error(er))
     }
     render() {
-        const { name, address, description, disabled } = this.state
+        const { name, address, description, disabled, imageUrl } = this.state
         return (
             <form onSubmit={this.handleSubmit}>
                 <h3>Add New Campus</h3>
@@ -51,6 +52,10 @@ class AddCampus extends Component {
                     <div />
                     <label htmlFor="description">
                         Description <input onChange={this.handleChange} value={description} type="text" name="description" />
+                    </label>
+                    <div />
+                    <label htmlFor="imageUrl">
+                        imageUrl <input onChange={this.handleChange} value={imageUrl} type="text" name="imageUrl" />
                     </label>
                 </div>
                 <button type="submit" disabled={!disabled}> Create Campus</button>

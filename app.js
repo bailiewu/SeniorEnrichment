@@ -94,6 +94,45 @@ app.put('/students', (req, res, next) => {
         .catch(next)
 })
 
+app.delete('/campuses/:id', (req, res, next) => {
+    // console.log(req.body, req.params)
+    // curl -X DELETE -H "Content-Type: application/json" -d '' http://localhost:3000/api/campuses/7
+    // req.body: email & pw. req.params: id
+    // will use id later for updating.
+    // required campus info:
+    //  Students.create({ firstName: faker.name.firstName(), lastName: faker.name.lastName(), email: faker.internet.email(), gpa: randomGPA() })
+    const { id } = req.params
+    Campuses.findByPk(+id)
+        .then((campus) => {
+            if (!campus) return res.sendStatus(204)
+            campus.destroy()
+            return res.sendStatus(204)
+        })
+        .catch((err) => {
+            next(err)
+        })
+
+})
+
+app.delete('/students/:id', (req, res, next) => {
+    // console.log(req.body, req.params)
+    // curl -X DELETE -H "Content-Type: application/json" -d '' http://localhost:3000/api/campuses/7
+    // req.body: email & pw. req.params: id
+    // will use id later for updating.
+    // required campus info:
+    //  Students.create({ firstName: faker.name.firstName(), lastName: faker.name.lastName(), email: faker.internet.email(), gpa: randomGPA() })
+    const { id } = req.params
+    Students.findByPk(+id)
+        .then((student) => {
+            if (!student) return res.sendStatus(204)
+            student.destroy()
+            return res.sendStatus(204)
+        })
+        .catch((err) => {
+            next(err)
+        })
+
+})
 
 // curl -X PUT -H "Content-Type: application/json" -d '{"email": "cody@email.com", "password": "12345"}' http://localhost:3000/api/campuses/1
 

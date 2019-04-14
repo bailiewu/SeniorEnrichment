@@ -41,6 +41,20 @@ export const getCampuses = () => {
     })
 }
 
+export const deleteCampusThunk = (id) => (dispatch) => axios
+    .delete(`/api/campuses/${id}`)
+    .then(() => axios.get('/api/campuses'))
+    .then(response => response.data)
+    .then((campuses) => dispatch(setCampuses(campuses)))
+    .catch((err) => console.log('Delete Campus Error', err))
+
+export const deleteStudentThunk = (id) => (dispatch) => axios
+    .delete(`/api/students/${id}`)
+    .then(() => axios.get('/api/students'))
+    .then(response => response.data)
+    .then((students) => dispatch(setStudents(students)))
+    .catch((err) => console.log('Delete Student Error', err))
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CAMPUSES: return { ...state, campuses: action.campuses }

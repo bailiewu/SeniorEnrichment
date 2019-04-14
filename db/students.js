@@ -41,12 +41,9 @@ const Students = connection.define('student', {
 }, {
         hooks: {
             beforeValidate: (student) => {
-                if (!student.email) {
-                    student.email = 'temp@gmail.com'
-                }
-                if (!student.imageUrl) {
-                    student.imageUrl = 'https://images.pexels.com/photos/53453/marilyn-monroe-woman-actress-pretty-53453.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'
-                }
+                if (!student.email) student.email = 'temp@gmail.com'
+                if (!student.imageUrl) student.imageUrl = 'https://images.pexels.com/photos/53453/marilyn-monroe-woman-actress-pretty-53453.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'
+
             }
         }
     })
