@@ -33,7 +33,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node server.js",
+    "start": "node seed.js & server.js ",
     "seed": "node db/seed.js",
     "postinstall": "npm run webpack",
     "webpack": "webpack",
